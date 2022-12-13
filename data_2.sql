@@ -8,18 +8,17 @@ CREATE TABLE STATION(
 CREATE TABLE ZUGVERBINDUNG(
 	zugverbindungs_id NUMBER(16) NOT NULL,
 	
-	CONSTRAINT pk_station
+	CONSTRAINT pk_zugverbindung
 		PRIMARY KEY (zugverbindungs_id)
 );
 CREATE TABLE STATION_HAT_ZUGVERBINDUNG(
 	station_id        NUMBER(16) NOT NULL,
 	zugverbindungs_id NUMBER(16) NOT NULL,
 	
-	abfahrts_zeit TIME,
-	ankunfts_zeit TIME,
-	abfarhts_tag  DATE,
+	abfahrts_zeit TIMESTAMP,
+	ankunfts_zeit TIMESTAMP,
 	
-	fearth_durch  BOOLEAN,
+	fearth_durch  NUMBER(1),
 	
 	CONSTRAINT fk_station_hat_zugverbindung
 		FOREIGN KEY (station_id)
@@ -73,7 +72,7 @@ CREATE TABLE SITZE(
 	bezeichnung VARCHAR2(32) NOT NULL,
 	
 	CONSTRAINT pk_sitze
-		PRIMARY KEY (sitze_id)
+		PRIMARY KEY (sitze_id),
 	CONSTRAINT fk_wagen_hat_sitze
 		FOREIGN KEY (wagen_id)
 		REFERENCES WAGEN(wagen_id),
